@@ -3,9 +3,16 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import Map from './Map';
 import ShipmentsTable from './ShipmentsTable';
+import { getAdminData } from 'routes/Dashboard/modules/Dashboard';
 
 import classes from './Dashboard.scss';
 import NumberCard from './NumberCard';
+import io from 'socket.io-client';
+
+const socket = io.connect(__CONTROLLER_API__,
+  {
+    'reconnection': false,
+  });
 
 const visibleTab = {
   display: 'flex',
@@ -26,6 +33,10 @@ class Dashboard extends React.PureComponent {
     super(props);
     this.setMapMode = this.setMapMode.bind(this);
     this.setListMode = this.setListMode.bind(this);
+    socket.on('refresh', () => {
+      console.log("Refresh requested via sockets")
+      props.getAdminData()
+    });
   }
 
   componentWillMount() {
@@ -97,4 +108,8 @@ const mapStateToProps = (state) => ({
   dashboard: state.dashboard,
 });
 
-export default connect(mapStateToProps, {})(Dashboard);
+const mapActionCreators = {
+  getAdminData,
+};
+
+export default connect(mapStateToProps, mapActionCreators)(Dashboard);
