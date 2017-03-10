@@ -9,7 +9,7 @@ import classes from './Dashboard.scss';
 import NumberCard from './NumberCard';
 import io from 'socket.io-client';
 
-const socket = io.connect('/',
+const socket = io.connect('http://acme-freight-refresher.mybluemix.net/',
   {
     'reconnection': false,
   });
