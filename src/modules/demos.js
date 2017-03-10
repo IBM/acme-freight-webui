@@ -174,13 +174,13 @@ export function *watchGetDemoSession() {
 export function *watchEndDemoSession() {
   while (true) {
     yield take(END_DEMO_SESSION);
-    const demoState = yield select(demoSelector);
-    try {
-      yield call(api.endDemo, demoState.guid);
-    }
-    catch (error) {
-      console.log('Error during logout', error);
-    }
+    //const demoState = yield select(demoSelector);
+    // try {
+    //   yield call(api.endDemo, demoState.guid);
+    // }
+    // catch (error) {
+    //   console.log('Error during logout', error);
+    // }
     window.localStorage.removeItem('savedGuid');
     yield put(push('/'));
   }
