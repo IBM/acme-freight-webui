@@ -74,7 +74,7 @@ export class RetailerCard extends React.PureComponent {
               <Table>
                 <TableBody displayRowCheckbox={false}>
                   {shipments.map(shipment => (
-                    <TableRow>
+                    <TableRow key={`TR-${shipment.id}`}>
                       <TableRowColumn style={styles.column}>{this.props.idToNameResolver.resolve('distributionCenter', shipment.fromId)}</TableRowColumn>
                       <TableRowColumn style={styles.column2}>{shipment.status}</TableRowColumn>
                     </TableRow>
