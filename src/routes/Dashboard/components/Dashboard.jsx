@@ -1,18 +1,18 @@
 import React from 'react';
+import io from 'socket.io-client';
 import { connect } from 'react-redux';
+import { getAdminData } from 'routes/Dashboard/modules/Dashboard';
 import RaisedButton from 'material-ui/RaisedButton';
 import Map from './Map';
+
 import ShipmentsTable from './ShipmentsTable';
-import { getAdminData } from 'routes/Dashboard/modules/Dashboard';
+
 
 import classes from './Dashboard.scss';
 import NumberCard from './NumberCard';
-import io from 'socket.io-client';
 
-const socket = io.connect('http://acme-freight-refresher.mybluemix.net/',
-  {
-    'reconnection': false,
-  });
+
+const socket = io.connect('https://acme-freight-refresher.mybluemix.net/', { reconnection: false });
 
 const visibleTab = {
   display: 'flex',
@@ -34,8 +34,8 @@ class Dashboard extends React.PureComponent {
     this.setMapMode = this.setMapMode.bind(this);
     this.setListMode = this.setListMode.bind(this);
     socket.on('refresh', () => {
-      console.log("Refresh requested via sockets")
-      props.getAdminData()
+      console.log('Refresh requested via sockets');
+      props.getAdminData();
     });
   }
 
@@ -79,8 +79,16 @@ class Dashboard extends React.PureComponent {
           />
           <div className={classes.viewMode}>
             <div>
-              <RaisedButton disabled={this.state.viewMode === 'map'} label="Map" id="viewAsMap" onClick={this.setMapMode} />
-              <RaisedButton disabled={this.state.viewMode === 'list'} label="List" id="viewAsList" onClick={this.setListMode} />
+              <RaisedButton
+                disabled={this.state.viewMode === 'map'}
+                label="Map" id="viewAsMap"
+                onClick={this.setMapMode}
+              />
+              <RaisedButton
+                disabled={this.state.viewMode === 'list'}
+                label="List" id="viewAsList"
+                onClick={this.setListMode}
+              />
             </div>
           </div>
         </div>
@@ -88,7 +96,10 @@ class Dashboard extends React.PureComponent {
         <div style={this.state.viewMode === 'map' ? visibleTab : invisibleTab} >
           <Map />
         </div>
-        <div className={classes.shipmentsTable} style={this.state.viewMode === 'list' ? visibleTab : invisibleTab} >
+        <div
+          className={classes.shipmentsTable}
+          style={this.state.viewMode === 'list' ? visibleTab : invisibleTab}
+        >
           <ShipmentsTable />
         </div>
       </div>
@@ -98,6 +109,7 @@ class Dashboard extends React.PureComponent {
 
 Dashboard.propTypes = {
   dashboard: React.PropTypes.object,
+  getAdminData: React.PropTypes.func,
 };
 
 // ------------------------------------
