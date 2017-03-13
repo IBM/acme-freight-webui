@@ -44,6 +44,7 @@
 .shipment {
   color: #749f67;
   font-size: 20px;
+  animation: blinker 1s linear 3;
 
   & div i {
     padding-top: 4px;
@@ -53,6 +54,10 @@
     background-color: #749f67;
     color: white;
   }
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
 }
 
 // --------------------------------------------
