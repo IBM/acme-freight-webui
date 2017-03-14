@@ -1,3 +1,5 @@
+@import '~styles/base/colors';
+
 .distributionCenter, .retailer, .shipment {
   text-align: center;
   display: inline-block;
@@ -12,8 +14,8 @@
     width: 30px;
     height: 30px;
     margin: 1px;
-    border: 1px solid rgba(0,0,0,0);
-    border-radius: 15px;
+    // border: 1px solid rgba(0,0,0,0);
+    // border-radius: 15px;
   }
 
   &.selected div {
@@ -42,8 +44,8 @@
 // Shipment
 // --------------------------------------------
 .shipment {
-  color: #749f67;
-  font-size: 20px;
+  color: $map3Primary;
+  font-size: 25px;
   animation: blinker 1s linear 5;
 
   & div i {
@@ -51,8 +53,10 @@
   }
 
   &:hover, &.selected {
-    background-color: #749f67;
+    background-color: $map3Primary;
     color: white;
+    width: 36px;
+    height: 35px;
   }
 }
 
@@ -64,11 +68,11 @@
 // Retailer
 // --------------------------------------------
 .retailer {
-  color: #ad3e9c;
+  color: $map2Primary;
   font-size: 24px;
 
   &:hover, &.selected {
-    background-color: #ad3e9c;
+    background-color: $map2Primary;
     color: white;
   }
 }
