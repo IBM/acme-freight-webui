@@ -192,6 +192,7 @@ export function *watchEndDemoSession() {
     }
     window.localStorage.removeItem('savedGuid');
     yield put(push('/'));
+    location.reload();
   }
 }
 
