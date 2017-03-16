@@ -42,13 +42,17 @@ export class ShipmentCard extends React.PureComponent {
   }
 
   render() {
+    console.log(this.props.shipment);
     const {
       status,
       currentLocation,
       estimatedTimeOfArrival,
-      updatedAt,
+      // updatedAt,
       fromId,
       toId,
+      averageSpeed,
+      shipmentHumidity,
+      shipmentTemp,
     } = this.props.shipment;
 
     return (
@@ -56,9 +60,15 @@ export class ShipmentCard extends React.PureComponent {
         <div className={classes.subtitle2}>
           Status
         </div>
-        <div>{status}&nbsp;{(status === 'DELIVERED') ? <i className="fa fa-check" aria-hidden="true"></i> : ''}
-        {status === 'NEW' &&
-        <RaisedButton label="Schedule" primary={false} style={style} onClick={this.changeStatusToInTransit} />
+        <div>{status}&nbsp;{(status === 'DELIVERED') ?
+          <i className="fa fa-check" aria-hidden="true" /> : ''}
+          {status === 'NEW' &&
+          <RaisedButton
+            label="Schedule"
+            primary={false}
+            style={style}
+            onClick={this.changeStatusToInTransit}
+          />
         }
         </div>
 
@@ -84,9 +94,11 @@ export class ShipmentCard extends React.PureComponent {
         }
 
         <div className={classes.subtitle2}>
-          Last Updated
+          Shipment Data
         </div>
-        <div>{updatedAt ? formatTime(updatedAt) : 'N/A'}</div>
+        <div>{averageSpeed && `Average Speed: ${averageSpeed}mph`}</div>
+        <div>{shipmentHumidity && `Humidity: ${shipmentHumidity}%`}</div>
+        <div>{shipmentTemp && `Temperature: ${shipmentTemp}°F`}</div>
 
         <div className={classes.subtitle2}>
           Origin

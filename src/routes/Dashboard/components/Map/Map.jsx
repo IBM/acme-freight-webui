@@ -40,7 +40,7 @@ export class Map extends React.PureComponent {
 
   componentWillMount() {
     this.setState({ zoom: this.props.zoom });
-    const intervalId = setInterval(this.timer.bind(this), 500);
+    const intervalId = setInterval(this.timer.bind(this), 200);
     this.setState({ intervalId });
   }
 
