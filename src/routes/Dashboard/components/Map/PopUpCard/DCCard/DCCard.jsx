@@ -43,7 +43,7 @@ const DCCard = ({ address, contact, shipments, idToNameResolver }) => (
           <Table>
             <TableBody displayRowCheckbox={false}>
               {shipments.map(shipment => (
-                <TableRow>
+                <TableRow key = {shipment.id}>
                   <TableRowColumn style={styles.column}>{idToNameResolver.resolve('retailer', shipment.toId)}</TableRowColumn>
                   <TableRowColumn style={styles.column2}>{shipment.status}</TableRowColumn>
                 </TableRow>
