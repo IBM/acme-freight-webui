@@ -186,6 +186,7 @@ export function *watchEndDemoSession() {
     try {
       yield put(logoutSuccess());
       yield call(api.endDemo, demoState.guid);
+      yield put(logoutSuccess());
     }
     catch (error) {
       console.log('Error during logout', error);
