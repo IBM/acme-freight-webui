@@ -32,7 +32,7 @@ export class Header extends React.PureComponent {
     return (
       <div style={styles.header} className={classes.header}>
         <Toolbar style={styles.toolbar}>
-          <ToolbarTitle text="Logistics Wizard" style={styles.title} className={classes.title} />
+          <ToolbarTitle text="Acme Freight - Logistics Wizard" style={styles.title} className={classes.title} />
           <div className={classes.topLink}>
             <a href="https://github.com/IBM-Bluemix/logistics-wizard" rel="noopener noreferrer" target="_blank">
               <p className={classes.text}>Github Source Code</p>
@@ -43,7 +43,7 @@ export class Header extends React.PureComponent {
         <h1>Let your global supply chain do the THINKing,<br /> so you don't have to.</h1>
         <br />
         <GhostButton
-          label="View Logistics Wizard in Action"
+          label="Login to Logistics Wizard"
           primary={false}
           id="viewInActionButton"
           onTouchTap={this.createDemo}

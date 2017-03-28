@@ -13,8 +13,8 @@ const styles = {
     margin: '0px 0.75rem 0px 1rem',
   },
   toolbarTitle: {
-    fontSize: '0.8rem',
-    fontWeight: '600',
+    fontSize: '1rem',
+    fontWeight: '500',
   },
   toolbar: {
     height: '56px',
@@ -29,7 +29,7 @@ export const GlobalNav = (props) => (
     <Toolbar style={styles.toolbar}>
       <ToolbarGroup firstChild>
         <Link to="/">
-          <ToolbarTitle text="Logistics Wizard" className={classes.title} style={styles.toolbarTitle} />
+          <ToolbarTitle text="Acme Freight - Logistics Wizard" className={classes.title} style={styles.toolbarTitle} />
         </Link>
       </ToolbarGroup>
 

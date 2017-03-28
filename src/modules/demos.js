@@ -184,6 +184,7 @@ export function *watchEndDemoSession() {
     yield take(END_DEMO_SESSION);
     const demoState = yield select(demoSelector);
     try {
+      yield put(logoutSuccess());
       yield call(api.endDemo, demoState.guid);
       yield put(logoutSuccess());
     }
@@ -192,6 +193,7 @@ export function *watchEndDemoSession() {
     }
     window.localStorage.removeItem('savedGuid');
     yield put(push('/'));
+    location.reload();
   }
 }
 

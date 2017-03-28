@@ -41,8 +41,8 @@ export const StormCard = (props) => {
       </div>
       <div className={classes.shipmentRecommendationList}>
 
-          Potential supply shortages due to weather.
-          Consider sending additional supplies to affected locations.
+          Potential shipment disruptions due to weather.
+          Consider these alternative shipments and routes.
 
         {recommendations.map((recommendation, index) =>
           <div className={classes.shipmentDialog} key={recommendation._id}>

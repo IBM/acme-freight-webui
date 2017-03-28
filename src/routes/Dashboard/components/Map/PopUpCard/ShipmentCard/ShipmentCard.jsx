@@ -1,11 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { getWeatherObservations } from 'routes/Dashboard/modules/Dashboard';
+import { getWeatherObservations, selectMarker} from 'routes/Dashboard/modules/Dashboard';
 import LoadingSpinner from 'components/LoadingSpinner';
+import RaisedButton from 'material-ui/RaisedButton';
 import classes from '../PopUpCard.scss';
 
 const timeFormat = 'MMM Do, h:mm a';
+
+const style = {
+  marginLeft: 30,
+  marginBottom: 0,
+};
 
 const formatTime = time => moment(time).format(timeFormat);
 
@@ -29,7 +35,14 @@ export class ShipmentCard extends React.PureComponent {
     }
   }
 
+  changeStatusToInTransit = () => {
+    this.props.shipment.status = "TRANSIT_ANIMATION";
+    this.props.selectMarker('hidden', {});
+    this.forceUpdate();
+  }
+
   render() {
+    console.log(this.props.shipment);
     const {
       status,
       currentLocation,
@@ -46,7 +59,18 @@ export class ShipmentCard extends React.PureComponent {
         <div className={classes.subtitle2}>
           Status
         </div>
-        <div>{status}</div>
+        <div>{status}&nbsp;{(status === 'DELIVERED') ?
+          <i className="fa fa-check" aria-hidden="true" /> : ''}
+          {status === 'NEW' &&
+          <RaisedButton
+            label="Schedule"
+            primary={false}
+            style={style}
+            onClick={this.changeStatusToInTransit}
+          />
+        }
+        </div>
+
         {currentLocation &&
           <div>
             <div className={classes.subtitle2}>
@@ -121,6 +145,7 @@ export class ShipmentCard extends React.PureComponent {
 }
 
 ShipmentCard.propTypes = {
+  selectMarker: React.PropTypes.func.isRequired,
   shipment: React.PropTypes.object.isRequired,
   retrieveWeatherObservations: React.PropTypes.func.isRequired,
   idToNameResolver: React.PropTypes.object,
@@ -128,6 +153,8 @@ ShipmentCard.propTypes = {
 
 const mapActionCreators = {
   retrieveWeatherObservations: getWeatherObservations,
+  selectMarker,
 };
+
 
 export default connect(null, mapActionCreators)(ShipmentCard);

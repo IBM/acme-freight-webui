@@ -12,6 +12,7 @@ export const callApi = (endpoint, {
 } = {}) =>
   fetch(`${apiUrl}/${endpoint}`, {
     headers: { 'Content-Type': 'application/json', ...headers },
+    cache: 'no-store',
     method,
     body: JSON.stringify(body),
   })
