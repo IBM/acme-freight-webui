@@ -201,6 +201,12 @@ export function *watchGetAdminData() {
     }
   }
 }
+// Refresh Dashboard every 3 seconds.
+// TODO: use websockets once server is implemented.
+setInterval(() => {
+  console.log('Refreshing every three seconds..');
+  getAdminData();
+}, 3000);
 
 export function *watchSimulateStorm() {
   while (true) {

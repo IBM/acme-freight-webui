@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import GoogleMap from 'google-map-react';
+import LoadingSpinner from 'components/LoadingSpinner';
 import RaisedButton from 'material-ui/RaisedButton';
 import { simulateStorm, selectMarker } from 'routes/Dashboard/modules/Dashboard';
 import MapMarker from './MapMarker/';
 import AlertsCard from '../AlertsCard';
-import LoadingSpinner from 'components/LoadingSpinner';
+
 // map style from https://snazzymaps.com/style/151/ultra-light-with-labels
 // https://googlemaps.github.io/js-samples/styledmaps/wizard/
 import mapStyle from './Map.style.json';
@@ -40,50 +41,10 @@ export class Map extends React.PureComponent {
 
   componentWillMount() {
     this.setState({ zoom: this.props.zoom });
-    const intervalId = setInterval(this.timer.bind(this), 200);
-    this.setState({ intervalId });
   }
-
-  componentWillUnmount() {
-   // use intervalId from the state to clear the interval
-   clearInterval(this.state.intervalId);
-}
 
   onMapChange(change) {
     this.setState({ zoom: change.zoom });
-  }
-
-//Last minute animation requirement for IC Demo.
-//TODO: remove this timer.
-  timer() {
-    this.props.shipments
-      .map((shipment, index) => {
-        if (shipment.currentLocation != null
-         && shipment.status === 'TRANSIT_ANIMATION') {
-          let change = false;
-          if (shipment.currentLocation.longitude < -71.05) {
-            this.props.shipments[index].currentLocation.longitude
-            = shipment.currentLocation.longitude + 2;
-            change = true;
-          }
-          if (shipment.currentLocation.latitude > 42.36) {
-            this.props.shipments[index].currentLocation.latitude
-            = shipment.currentLocation.latitude - 1;
-            change = true;
-          }
-          if (change) {
-            this.forceUpdate();
-          }
-          else {
-            this.props.shipments[index].status = 'DELIVERED';
-            this.props.shipments[index].currentLocation.city = 'Boston';
-            this.props.shipments[index].currentLocation.state = 'MA';
-            clearInterval(this.state.intervalId);
-            this.props.selectMarker('shipment', this.props.shipments[index]);
-            this.forceUpdate();
-          }
-        }
-      });
   }
 
   isSelected(targetType, targetId) {
@@ -109,9 +70,6 @@ export class Map extends React.PureComponent {
         id="simulateStorm"
       />);
     }
-
-
-
 
     return (
       <div className={classes.mapContainer}>

@@ -1,17 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { getWeatherObservations, selectMarker} from 'routes/Dashboard/modules/Dashboard';
+import { getWeatherObservations, selectMarker } from 'routes/Dashboard/modules/Dashboard';
 import LoadingSpinner from 'components/LoadingSpinner';
-import RaisedButton from 'material-ui/RaisedButton';
 import classes from '../PopUpCard.scss';
 
 const timeFormat = 'MMM Do, h:mm a';
-
-const style = {
-  marginLeft: 30,
-  marginBottom: 0,
-};
 
 const formatTime = time => moment(time).format(timeFormat);
 
@@ -61,14 +55,6 @@ export class ShipmentCard extends React.PureComponent {
         </div>
         <div>{status}&nbsp;{(status === 'DELIVERED') ?
           <i className="fa fa-check" aria-hidden="true" /> : ''}
-          {status === 'NEW' &&
-          <RaisedButton
-            label="Schedule"
-            primary={false}
-            style={style}
-            onClick={this.changeStatusToInTransit}
-          />
-        }
         </div>
 
         {currentLocation &&

@@ -1,5 +1,4 @@
 import React from 'react';
-import io from 'socket.io-client';
 import { connect } from 'react-redux';
 import { getAdminData } from 'routes/Dashboard/modules/Dashboard';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -10,9 +9,6 @@ import ShipmentsTable from './ShipmentsTable';
 
 import classes from './Dashboard.scss';
 import NumberCard from './NumberCard';
-
-
-const socket = io.connect('https://acme-freight-refresher.mybluemix.net/', { reconnection: false });
 
 const visibleTab = {
   display: 'flex',
@@ -33,10 +29,6 @@ class Dashboard extends React.PureComponent {
     super(props);
     this.setMapMode = this.setMapMode.bind(this);
     this.setListMode = this.setListMode.bind(this);
-    socket.on('refresh', () => {
-      console.log('Refresh requested via sockets');
-      props.getAdminData();
-    });
   }
 
   componentWillMount() {
