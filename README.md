@@ -1,11 +1,11 @@
 # Logistics Wizard Web User Interface
 
-| **master** | [![Build Status](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui) [![Coverage Status](https://coveralls.io/repos/github/IBM-Bluemix/logistics-wizard-webui/badge.svg?branch=master)](https://coveralls.io/github/IBM-Bluemix/logistics-wizard-webui?branch=master) |
+| **master** | [![Build Status](https://travis-ci.org/strongloop/acme-freight-webui.svg?branch=master)](https://travis-ci.org/strongloop/acme-freight-webui) [![Coverage Status](https://coveralls.io/repos/github/strongloop/acme-freight-webui/badge.svg?branch=master)](https://coveralls.io/github/strongloop/acme-freight-webui?branch=master) |
 | ----- | ----- |
-| **dev** | [![Build Status](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui.svg?branch=dev)](https://travis-ci.org/IBM-Bluemix/logistics-wizard-webui) [![Coverage Status](https://coveralls.io/repos/github/IBM-Bluemix/logistics-wizard-webui/badge.svg?branch=dev)](https://coveralls.io/github/IBM-Bluemix/logistics-wizard-webui?branch=dev)|
+| **dev** | [![Build Status](https://travis-ci.org/strongloop/acme-freight-webui.svg?branch=dev)](https://travis-ci.org/strongloop/acme-freight-webui) [![Coverage Status](https://coveralls.io/repos/github/strongloop/acme-freight-webui/badge.svg?branch=dev)](https://coveralls.io/github/strongloop/acme-freight-webui?branch=dev)|
 <a href="https://www.zenhub.com/"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
-This project is part of the larger [Logistics Wizard](https://github.com/IBM-Bluemix/logistics-wizard) project.
+This project is part of the larger [Logistics Wizard](https://github.com/strongloop/acme-freight) project.
 
 ## Overview
 
@@ -57,9 +57,9 @@ After confirming that your development environment meets the specified [requirem
 First, clone or download:
 
 ```bash
-$ git clone git@github.com:IBM-Bluemix/logistics-wizard-webui.git
+$ git clone git@github.com:strongloop/acme-freight-webui.git
 // or
-$ wget -O logistics-wizard-webui.zip https://github.com/IBM-Bluemix/logistics-wizard-webui/archive/master.zip
+$ wget -O logistics-wizard-webui.zip https://github.com/strongloop/acme-freight-webui/archive/master.zip
 $ unzip logistics-wizard-webui.zip
 ```
 
