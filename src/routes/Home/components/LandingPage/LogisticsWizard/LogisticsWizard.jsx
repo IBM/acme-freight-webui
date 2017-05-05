@@ -24,7 +24,7 @@ export const LogisticsWizard = () => (
       </section>
     </div>
     <div className={classes.archDiagram}>
-      <h1>Logistics Wizard Architecture</h1>
+      <h1>Acme Freight Architecture</h1>
       <Card className={classes.diagram}>
         <CardMedia>
           <img src={Diagram} alt="Architecture Diagram" />
