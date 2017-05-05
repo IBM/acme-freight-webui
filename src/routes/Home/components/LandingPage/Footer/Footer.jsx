@@ -5,9 +5,9 @@ import classes from './Footer.scss';
 export const Footer = () => (
   <div className={classes.footer}>
     <div className={classes.gradient} />
-    <h4>Learn more on the Logistics Wizard Wiki</h4>
-    <a href="https://github.com/IBM-Bluemix/logistics-wizard/wiki">
-      <GhostButton label="Github Wiki" />
+    <h4>Learn more on the Acme Freight GitHub</h4>
+    <a href="https://github.com/ibm/acme-freight">
+      <GhostButton label="Acme Freight GitHub" />
     </a>
   </div>
 );

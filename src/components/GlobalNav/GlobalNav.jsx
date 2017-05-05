@@ -29,14 +29,14 @@ export const GlobalNav = (props) => (
     <Toolbar style={styles.toolbar}>
       <ToolbarGroup firstChild>
         <Link to="/">
-          <ToolbarTitle text="Acme Freight - Logistics Wizard" className={classes.title} style={styles.toolbarTitle} />
+          <ToolbarTitle text="Acme Freight Logistics" className={classes.title} style={styles.toolbarTitle} />
         </Link>
       </ToolbarGroup>
 
       <ToolbarGroup>
         <RoleSwitcher logout={props.endDemoSession} />
         <IconButton style={styles.iconButton}>
-          <a href="https://github.com/strongloop/acme-freight" target="_blank">
+          <a href="https://github.com/ibm/acme-freight" target="_blank">
             <Icon
               name="github"
               className={classes.github}
