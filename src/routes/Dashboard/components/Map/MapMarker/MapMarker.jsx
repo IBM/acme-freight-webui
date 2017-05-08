@@ -38,6 +38,7 @@ export default class MapMarker extends React.PureComponent {
   }
 
   render() {
+
     const { type, id } = this.props;
 
     let markerIcon;
@@ -50,7 +51,7 @@ export default class MapMarker extends React.PureComponent {
         markerIcon = 'fa fa-map-marker';
         break;
       case 'shipment':
-        markerIcon = 'fa fa-truck';
+        markerIcon = 'fa fa-truck fa-flip-horizontal';
         break;
       case 'storm': {
         // compute the diameter in pixels of the storm event

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { getWeatherObservations } from 'routes/Dashboard/modules/Dashboard';
+import { getWeatherObservations, selectMarker } from 'routes/Dashboard/modules/Dashboard';
 import LoadingSpinner from 'components/LoadingSpinner';
 import classes from '../PopUpCard.scss';
 
@@ -29,14 +29,23 @@ export class ShipmentCard extends React.PureComponent {
     }
   }
 
+  changeStatusToInTransit = () => {
+    this.props.shipment.status = "TRANSIT_ANIMATION";
+    this.props.selectMarker('hidden', {});
+    this.forceUpdate();
+  }
+
   render() {
+    console.log(this.props.shipment);
     const {
       status,
       currentLocation,
       estimatedTimeOfArrival,
-      updatedAt,
       fromId,
       toId,
+      averageSpeed,
+      shipmentHumidity,
+      shipmentTemp,
     } = this.props.shipment;
 
     return (
@@ -44,7 +53,10 @@ export class ShipmentCard extends React.PureComponent {
         <div className={classes.subtitle2}>
           Status
         </div>
-        <div>{status}</div>
+        <div>{status}&nbsp;{(status === 'DELIVERED') ?
+          <i className="fa fa-check" aria-hidden="true" /> : ''}
+        </div>
+
         {currentLocation &&
           <div>
             <div className={classes.subtitle2}>
@@ -67,9 +79,20 @@ export class ShipmentCard extends React.PureComponent {
         }
 
         <div className={classes.subtitle2}>
-          Last Updated
+          Shipment Data
         </div>
-        <div>{updatedAt ? formatTime(updatedAt) : 'N/A'}</div>
+        <div>
+          <i className={`fa fa-car ${classes.icon}`} aria-hidden="true" />
+          {`Average Speed: ${averageSpeed || '-'} mph`}
+        </div>
+        <div>
+          <i className={`fa fa-snowflake-o ${classes.icon}`} aria-hidden="true" />
+          {`Humidity: ${shipmentHumidity || '-'} %`}
+        </div>
+        <div>
+          <i className={`fa fa-thermometer ${classes.icon}`} aria-hidden="true" />
+          {`Temperature: ${shipmentTemp || '-'}°F`}
+        </div>
 
         <div className={classes.subtitle2}>
           Origin
@@ -87,8 +110,17 @@ export class ShipmentCard extends React.PureComponent {
               Current Weather
             </div>
             <div>
-              {currentLocation.weather ?
-               `${currentLocation.weather.observation.temp}° | ${currentLocation.weather.observation.wx_phrase}` :
+
+              {currentLocation.weather ? <div>
+                <img
+                  alt={currentLocation.weather.observation.wx_phrase}
+                  className={classes.weatherIcon}
+                  src={`/images/weather/${currentLocation.weather.observation.wx_icon}.png`}
+                />
+                {`${currentLocation.weather.observation.temp}
+                ° | ${currentLocation.weather.observation.wx_phrase}`}
+              </div>
+               :
                (<div style={{ textAlign: 'center' }}><LoadingSpinner size={60} /></div>)}
             </div>
           </div>
@@ -99,6 +131,7 @@ export class ShipmentCard extends React.PureComponent {
 }
 
 ShipmentCard.propTypes = {
+  selectMarker: React.PropTypes.func.isRequired,
   shipment: React.PropTypes.object.isRequired,
   retrieveWeatherObservations: React.PropTypes.func.isRequired,
   idToNameResolver: React.PropTypes.object,
@@ -106,6 +139,8 @@ ShipmentCard.propTypes = {
 
 const mapActionCreators = {
   retrieveWeatherObservations: getWeatherObservations,
+  selectMarker,
 };
+
 
 export default connect(null, mapActionCreators)(ShipmentCard);

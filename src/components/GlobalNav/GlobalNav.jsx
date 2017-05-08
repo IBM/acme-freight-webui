@@ -13,8 +13,8 @@ const styles = {
     margin: '0px 0.75rem 0px 1rem',
   },
   toolbarTitle: {
-    fontSize: '0.8rem',
-    fontWeight: '600',
+    fontSize: '1rem',
+    fontWeight: '500',
   },
   toolbar: {
     height: '56px',
@@ -29,14 +29,14 @@ export const GlobalNav = (props) => (
     <Toolbar style={styles.toolbar}>
       <ToolbarGroup firstChild>
         <Link to="/">
-          <ToolbarTitle text="Logistics Wizard" className={classes.title} style={styles.toolbarTitle} />
+          <ToolbarTitle text="Acme Freight Logistics" className={classes.title} style={styles.toolbarTitle} />
         </Link>
       </ToolbarGroup>
 
       <ToolbarGroup>
         <RoleSwitcher logout={props.endDemoSession} />
         <IconButton style={styles.iconButton}>
-          <a href="https://github.com/IBM-Bluemix/logistics-wizard" target="_blank">
+          <a href="https://github.com/ibm/acme-freight" target="_blank">
             <Icon
               name="github"
               className={classes.github}

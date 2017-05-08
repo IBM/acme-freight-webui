@@ -1,5 +1,6 @@
 import Koa from 'koa';
 import convert from 'koa-convert';
+const _ = require('koa-route');
 import webpack from 'webpack';
 import historyApiFallback from 'koa-connect-history-api-fallback';
 import serve from 'koa-static';
@@ -13,6 +14,12 @@ import webpackHMRMiddleware from './middleware/webpack-hmr';
 const debug = _debug('app:server');
 const paths = config.utils_paths;
 const app = new Koa();
+
+//Send a web socket notification to Dashboard.jsx to update state.
+app.use(_.get('/refresh', (ctx) => {
+    io.emit('refresh', { time: new Date().toJSON() });
+    ctx.body = 'OK';
+}));
 
 // Enable koa-proxy if it has been enabled in the config.
 if (config.proxy && config.proxy.enabled) {
@@ -59,4 +66,19 @@ else {
   app.use(serve(paths.dist()));
 }
 
-export default app;
+
+var server = require('http').Server(app.callback()),
+    io = require('socket.io')(server, { origins: '*:*'});
+
+io.origins('*:*');
+
+// Socket.io
+io.on('connection', function(socket){
+  socket.emit('news', { hello: 'world' });
+  socket.on('time', function (data) {
+    socket.emit('time', { message: 'world' });
+    console.log(data);
+  });
+});
+
+export default server;

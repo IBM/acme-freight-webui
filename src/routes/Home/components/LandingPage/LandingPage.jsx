@@ -11,8 +11,6 @@ export const LandingPage = () => (
   <div className={classes.landingPage}>
     <Header />
     <LogisticsWizard />
-    <IconSection />
-    <ArchDiagram />
     <Footer />
   </div>
 );

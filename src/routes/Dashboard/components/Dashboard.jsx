@@ -1,8 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getAdminData } from 'routes/Dashboard/modules/Dashboard';
 import RaisedButton from 'material-ui/RaisedButton';
 import Map from './Map';
+
 import ShipmentsTable from './ShipmentsTable';
+
 
 import classes from './Dashboard.scss';
 import NumberCard from './NumberCard';
@@ -68,8 +71,16 @@ class Dashboard extends React.PureComponent {
           />
           <div className={classes.viewMode}>
             <div>
-              <RaisedButton disabled={this.state.viewMode === 'map'} label="Map" id="viewAsMap" onClick={this.setMapMode} />
-              <RaisedButton disabled={this.state.viewMode === 'list'} label="List" id="viewAsList" onClick={this.setListMode} />
+              <RaisedButton
+                disabled={this.state.viewMode === 'map'}
+                label="Map" id="viewAsMap"
+                onClick={this.setMapMode}
+              />
+              <RaisedButton
+                disabled={this.state.viewMode === 'list'}
+                label="List" id="viewAsList"
+                onClick={this.setListMode}
+              />
             </div>
           </div>
         </div>
@@ -77,7 +88,10 @@ class Dashboard extends React.PureComponent {
         <div style={this.state.viewMode === 'map' ? visibleTab : invisibleTab} >
           <Map />
         </div>
-        <div className={classes.shipmentsTable} style={this.state.viewMode === 'list' ? visibleTab : invisibleTab} >
+        <div
+          className={classes.shipmentsTable}
+          style={this.state.viewMode === 'list' ? visibleTab : invisibleTab}
+        >
           <ShipmentsTable />
         </div>
       </div>
@@ -87,6 +101,7 @@ class Dashboard extends React.PureComponent {
 
 Dashboard.propTypes = {
   dashboard: React.PropTypes.object,
+  getAdminData: React.PropTypes.func,
 };
 
 // ------------------------------------
@@ -97,4 +112,8 @@ const mapStateToProps = (state) => ({
   dashboard: state.dashboard,
 });
 
-export default connect(mapStateToProps, {})(Dashboard);
+const mapActionCreators = {
+  getAdminData,
+};
+
+export default connect(mapStateToProps, mapActionCreators)(Dashboard);
