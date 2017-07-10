@@ -1,3 +1,7 @@
+| **master** | [![Build Status](https://travis-ci.org/IBM/acme-freight-webui.svg?branch=master)](https://travis-ci.org/IBM/acme-freight-webui) [![Coverage Status](https://coveralls.io/repos/github/IBM/acme-freight-webui/badge.svg?branch=master)](https://coveralls.io/github/IBM/acme-freight-webui?branch=master) |
+| ----- | ----- |
+| **dev** | [![Build Status](https://travis-ci.org/IBM/acme-freight-webui.svg?branch=dev)](https://travis-ci.org/IBM/acme-freight-webui) [![Coverage Status](https://coveralls.io/repos/github/IBM/acme-freight-webui/badge.svg?branch=dev)](https://coveralls.io/github/IBM/acme-freight-webui?branch=dev)|
+
 # Acme Freight Web UI
 
 Learn more about the Acme Freight Web UI framework from the parent [Logistics Wizard repo](https://github.com/IBM-Bluemix/logistics-wizard-webui).
